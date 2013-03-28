@@ -1,4 +1,4 @@
 my_jobeet:
-    resource: "@myJobeetBundle/Resources/config/routing.yml"
+    resource: "@myJobeetBundle/Controller/"
+    type:     annotation
     prefix:   /
-

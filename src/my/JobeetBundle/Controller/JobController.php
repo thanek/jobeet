@@ -12,11 +12,8 @@ use my\JobeetBundle\Form\JobType;
 
 /**
  * Job controller.
- *
- * @Route("/job")
  */
-class JobController extends Controller
-{
+class JobController extends Controller {
     /**
      * Lists all Job entities.
      *
@@ -24,8 +21,7 @@ class JobController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function indexAction()
-    {
+    public function indexAction() {
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('myJobeetBundle:Job')->findAll();
@@ -42,9 +38,8 @@ class JobController extends Controller
      * @Method("POST")
      * @Template("myJobeetBundle:Job:new.html.twig")
      */
-    public function createAction(Request $request)
-    {
-        $entity  = new Job();
+    public function createAction(Request $request) {
+        $entity = new Job();
         $form = $this->createForm(new JobType(), $entity);
         $form->bind($request);
 
@@ -58,7 +53,7 @@ class JobController extends Controller
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -69,14 +64,13 @@ class JobController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function newAction()
-    {
+    public function newAction() {
         $entity = new Job();
-        $form   = $this->createForm(new JobType(), $entity);
+        $form = $this->createForm(new JobType(), $entity);
 
         return array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         );
     }
 
@@ -87,8 +81,7 @@ class JobController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function showAction($id)
-    {
+    public function showAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('myJobeetBundle:Job')->find($id);
@@ -100,7 +93,7 @@ class JobController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
+            'entity' => $entity,
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -112,8 +105,7 @@ class JobController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function editAction($id)
-    {
+    public function editAction($id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('myJobeetBundle:Job')->find($id);
@@ -126,8 +118,8 @@ class JobController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -139,8 +131,7 @@ class JobController extends Controller
      * @Method("PUT")
      * @Template("myJobeetBundle:Job:edit.html.twig")
      */
-    public function updateAction(Request $request, $id)
-    {
+    public function updateAction(Request $request, $id) {
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('myJobeetBundle:Job')->find($id);
@@ -161,8 +152,8 @@ class JobController extends Controller
         }
 
         return array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         );
     }
@@ -173,8 +164,7 @@ class JobController extends Controller
      * @Route("/{id}", name="job_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, $id)
-    {
+    public function deleteAction(Request $request, $id) {
         $form = $this->createDeleteForm($id);
         $form->bind($request);
 
@@ -200,11 +190,9 @@ class JobController extends Controller
      *
      * @return Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm($id)
-    {
+    private function createDeleteForm($id) {
         return $this->createFormBuilder(array('id' => $id))
             ->add('id', 'hidden')
-            ->getForm()
-        ;
+            ->getForm();
     }
 }

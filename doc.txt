@@ -23,7 +23,7 @@ Day 1: Starting up the Project
 * git push origin
 
 Day 2: The Project
-* sporo przepisaæ z http://symfony.com/legacy/doc/jobeet/1_2/en/02?orm=Propel, zwlaszcza user stories, mockups (warto pomyslec o behacie)
+* sporo przepisaï¿½ z http://symfony.com/legacy/doc/jobeet/1_2/en/02?orm=Propel, zwlaszcza user stories, mockups (warto pomyslec o behacie)
 
 Day 3: The Data Model
 * ./app/console doctrine:generate:entity --entity=myJobeetBundle:Category 
@@ -87,6 +87,13 @@ Day 3: The Data Model
 ** implement: Category::__toString
 
 Day 4: The Controller and the View
+* update ::base.html.twig
+* add favicon & css & images to myJobeetBundle/Resources/public
+* add myJobeetBundle/Resources/view/layout.html.twig (extends ::base.html.twig)
+* enable assetic (config.yml => assetic_bundles[])
+* views/Job/*.html.twig: block body => block content
+* edit templates
+
 Day 5: The Routing
 Day 6: More with the Model
 Day 7: Playing with the Category Page
