@@ -1,0 +1,1 @@
+insert into categories (id,name) values (1,'Design');insert into categories (id,name) values (2,'Programming');insert into categories (id,name) values (3,'Manager');insert into categories (id,name) values (4,'Administrator');

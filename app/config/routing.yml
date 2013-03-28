@@ -1,0 +1,4 @@
+my_jobeet:
+    resource: "@myJobeetBundle/Resources/config/routing.yml"
+    prefix:   /
+

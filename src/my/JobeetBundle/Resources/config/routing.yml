@@ -1,0 +1,4 @@
+my_jobeet:
+    resource: "@myJobeetBundle/Controller/"
+    type:     annotation
+    prefix:   /

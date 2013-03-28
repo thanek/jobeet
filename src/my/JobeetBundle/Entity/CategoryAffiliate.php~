@@ -1,0 +1,47 @@
+<?php
+
+namespace my\JobeetBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * CategoryAffiliate
+ *
+ * @ORM\Table(name="category_affiliates")
+ * @ORM\Entity(repositoryClass="my\JobeetBundle\Entity\CategoryAffiliateRepository")
+ */
+class CategoryAffiliate {
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var Category
+     *
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     */
+    private $category;
+
+    /**
+     * @var Affiliate
+     *
+     * @ORM\ManyToOne(targetEntity="Affiliate")
+     * @ORM\JoinColumn(name="affiliate_id", referencedColumnName="id", nullable=false)
+     */
+    private $affiliate;
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId() {
+        return $this->id;
+    }
+}

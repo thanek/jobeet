@@ -1,0 +1,111 @@
+Day 1: Starting up the Project
+* get composer.phar: curl -s https://getcomposer.org/installer | php
+* create project: composer.phar create-project symfony/framework-standard-edition jobeet.dev 2.2.0
+* cd jobeet.dev; composer.phar update
+* http://dev/jobeet.dev/web/config.php
+* vhosts
+* http://jobeet.dev/app_dev.php
+* git init
+* edit .gitignore
+* git add . && git commit -m 'Initial commit'
+* git remote add origin <origin>
+* git push origin master
+* wywalenie AcmeBundle:
+** app/config/routing_dev.yml; wywalenie _welcome, _demo_secured i _demo
+** app/AppKernel.php: wywalenie $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
+** rm -rf src/Acme
+** git rm -rf src/Acme
+** rm -rf web/bundles/acmedemo
+** git rm -rf web/bundles/acmedemo
+* Stworzenie my/JobeetBundle:
+** ./app/console generate:bundle
+* git commit -m 'Acme bundle removed, new myJobeetBundle added'
+* git push origin
+
+Day 2: The Project
+* sporo przepisaæ z http://symfony.com/legacy/doc/jobeet/1_2/en/02?orm=Propel, zwlaszcza user stories, mockups (warto pomyslec o behacie)
+
+Day 3: The Data Model
+* ./app/console doctrine:generate:entity --entity=myJobeetBundle:Category 
+* ./app/console doctrine:generate:entity --entity=myJobeetBundle:Affiliate
+* ./app/console doctrine:generate:entity --entity=myJobeetBundle:CategoryAffiliate
+* ./app/console doctrine:generate:entity --entity=myJobeetBundle:Job
+* dodanie referencji
+** Job: category
+
+    /**
+     * @var Category
+     *
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     */
+    private $category;
+
+** CategoryAffiliate: Category, Affiliate
+
+
+    /**
+     * @var Category
+     *
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     */
+    private $category;
+
+    /**
+     * @var Affiliate
+     *
+     * @ORM\ManyToOne(targetEntity="Affiliate")
+     * @ORM\JoinColumn(name="affiliate_id", referencedColumnName="id", nullable=false)
+     */
+    private $affiliate;
+
+** ./app/console doctrine:generate:entities myJobeetBundle
+
+* Stworzenie bazy;
+** ./app/console doctrine
+** ./app/console doctrine:database:create
+** ./app/console doctrine:schema:update --dump-sql oraz ./app/console doctrine:schema:update --force
+** ??? fixtures ???
+** ./app/console doctrine:generate:crud --entity=myJobeetBundle:Job
+** w app/config/routing.yml:
+
+  my_jobeet:
+    resource: "@myJobeetBundle/Resources/config/routing.yml"
+    prefix:   /
+
+** w myJobeetBundle/Resources/config/routing.yml:
+ 
+ my_jobeet:
+    resource: "@myJobeetBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+** ./app/console cache:clear
+** http://jobeet.dev/app_dev.php/job/
+** http://jobeet.dev/app_dev.php/job/new
+** implement: Category::__toString
+
+Day 4: The Controller and the View
+Day 5: The Routing
+Day 6: More with the Model
+Day 7: Playing with the Category Page
+Day 8: The Unit Tests
+Day 9: The Functional Tests
+Day 10: The Forms
+Day 11: Testing your Forms
+Day 12: The Admin Generator
+Day 13: The User
+Day 14: The Lazy Day
+Day 15: Feeds
+Day 16: Web Services
+Day 17: Search
+Day 18: AJAX
+Day 19: Internationalization and Localization
+Day 20: The Plugins
+Day 21: The Design Day
+Day 22: The Cache
+Day 23: The Deployment
+Day 24: Another Look at symfony
+Appendix A - License
+Acknowledgments
